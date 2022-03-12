@@ -1,0 +1,43 @@
+https://www.golinuxcloud.com/enable-https-ssl-secure-elasticsearch-linux/
+
+follow the link
+
+
+to watch ssl use this link 
+https://www.youtube.com/watch?v=Zafi0laDQFk
+
+#vim /tmp/instance.yml
+
+instances:
+  - name: 'server1'
+    dns: [ 'server1.example.com' ]
+    ip: [ '192.168.0.11' ]
+  - name: "server2"
+    dns: [ 'server2.example.com' ]
+    ip: [ '192.168.0.12' ]
+  - name: 'server3'
+    dns: [ 'server3.example.com' ]
+    ip: [ '192.168.0.13' ]
+  - name: 'centos-8'
+    dns: [ 'centos-8.example.com' ]
+    ip: [ '192.168.0.14' ]
+
+ cd /usr/share/elasticsearch/
+
+
+ bin/elasticsearch-certutil cert --keep-ca-key ca --pem --in /tmp/instance.yml --out /tmp/certs/certs.zip
+
+
+mkdir -p /etc/elasticsearch/certs
+
+cp /tmp/certs/ca/ca.crt /tmp/certs/server1/* /etc/elasticsearch/certs
+
+vim /etc/elasticsearch/elasticsearch.yml
+
+xpack.security.enabled: true
+
+
+xpack.security.transport.ssl.enabled: true
+xpack.security.transport.ssl.key: certs/server1.key
+xpack.security.transport.ssl.certificate: certs/server1.crt
+xpack.security.transport.ssl.certificate_authorities: [ "certs/ca.crt" ]

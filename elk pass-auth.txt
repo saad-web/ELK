@@ -1,0 +1,42 @@
+
+#CREATE USER-AUTH IN ELK
+vim /etc/elastic/elastic.yaml
+
+xpack.security.enabled: true
+
+
+discovery.type: single-node
+
+
+
+then
+
+cd /usr/share/elastic
+#run this commnad to generate auto password
+./bin/elasticsearch-setup-passwords auto
+#run this command to generate own password
+./bin/elasticsearch-setup-passwords interactive
+
+
+
+vim/etc/kibana/kibina.yaml
+
+#add this in file
+
+
+
+elasticsearch.username: "kibana"
+ "8QStQ0aXJjwfQHYEynbW"
+
+
+https://www.youtube.com/watch?v=E-kwK88Vxzk
+want to see 
+ref link
+https://www.elastic.co/guide/en/elasticsearch/reference/7.15/security-minimal-setup.html
+
+
+k8s-elk
+https://www.magalix.com/blog/kubernetes-observability-log-aggregation-using-elk-stack
+
+
+https://medium.com/@chris_linguine/how-to-monitor-distributed-logs-in-kubernetes-with-the-efk-stack-1218a565ce0c
