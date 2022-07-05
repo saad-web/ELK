@@ -40,3 +40,19 @@ https://www.magalix.com/blog/kubernetes-observability-log-aggregation-using-elk-
 
 
 https://medium.com/@chris_linguine/how-to-monitor-distributed-logs-in-kubernetes-with-the-efk-stack-1218a565ce0c
+
+
+
+
+
+
+
+
+
+
+#############################################
+add this for elk multi set pass
+http :9200/_xpack/license
+http post :9200/_xpack/license/start_trial\?acknowledge=true
+xpack.security.enabled: true
+./bin/elasticsearch-setup-passwords interactive
